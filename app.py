@@ -19,7 +19,7 @@ class MainWindow(QMainWindow):
 
         layout = QHBoxLayout() #makes the layout of the app to be horizontal
 
-        self.index = 0
+        self.index = 0 #variable that stores the throttle pressure
 
         self.displayer = QLCDNumber() #creates the LCD widget
         layout.addWidget(self.displayer) #adds LCD to the layout
@@ -32,9 +32,9 @@ class MainWindow(QMainWindow):
         self.slider_timer = None  # Initialize the timer
         self.start_time = None  # Initialize the start time
 
-        slider.valueChanged.connect(self.value_changed) #to display the speed on the LCD screen
-        slider.sliderPressed.connect(self.slider_pressed_event) #to start the timer for the acceleration
-        slider.sliderReleased.connect(self.slider_released_event) #to stop the timer for the acceleration
+        slider.valueChanged.connect(self.value_changed) #to change the throttle pressure
+        slider.sliderPressed.connect(self.slider_pressed_event) #to start the timer for and calculation the acceleration
+        slider.sliderReleased.connect(self.slider_released_event) #to stop the timer and calculation for the acceleration
 
         layout.addWidget(slider) #adds slider to layout
 
@@ -46,7 +46,7 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(widget) #centers all the widgets
 
     def value_changed(self, i):
-        self.index = i        
+        self.index = i     #refreshes the throttle pressure   
 
     def slider_pressed_event(self): 
         print("Slider pressed")
